@@ -1,4 +1,4 @@
-setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Documents/RankDataIntegration/rankingshrink_reproduce")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Documents/RankDataIntegration/rasper_reproduce")
 #load("SimulationResults/Simulation1b_kendall_n50.RData")
 load("SimulationResults/Simulation2a_n50.RData")
 

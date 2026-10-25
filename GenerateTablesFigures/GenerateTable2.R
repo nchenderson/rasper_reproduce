@@ -1,5 +1,5 @@
 
-setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Documents/RankDataIntegration/rankingshrink_reproduce")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Documents/RankDataIntegration/rasper_reproduce")
 load("SimulationResults/Simulation1b_n50.RData")
 
 Tab2 <- Results
