@@ -1,6 +1,4 @@
-# Black-and-white schematic. Uses only grid (included with R).
-# Run: source("polished_schematic.R")
-# Outputs: polished_schematic.pdf and polished_schematic.png
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Documents/RankDataIntegration/rasper_reproduce")
 library(grid)
 
 draw_schematic <- function(text_scale = 1.0) {
@@ -98,4 +96,7 @@ draw_schematic <- function(text_scale = 1.0) {
 }
 
 ## Save in a 5.5 x 4.0 aspect ratio
+pdf("TablesFigures/Figure1.pdf",width=5.5, height=4.0)
 draw_schematic(text_scale=0.67)
+dev.off()
+
