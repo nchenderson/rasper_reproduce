@@ -103,15 +103,44 @@ for(j in 1:nlam) {
 }
 
 
-pdf("TablesFigures/Figure2.pdf",width=5.5, height=4.0)
-par(mar=c(4.1, 4.1, 1.5, 0.5))
-plot(log(LamVals), CorVals, xlab=expression(ln(lambda)), ylab=expression(paste("Kendall's ", tau)),
-     main="Rank Association between the External Risk Model and RASPER", type="n",
-     las=1, ylim=c(0.4, 1.0), cex.lab=1.2, cex.main=0.9)
-points(log(LamVals), CorVals, pch=16)
-points(log(LamVals), CorValsS, pch=16, col="red")
-lines(log(LamVals), CorVals)
-lines(log(LamVals), CorValsS, col="red")
-legend("topleft", legend=c("RASPER (Spearman)", expression(paste("RASPER (Kendall's ", tau, ")"))), lwd=3,
-       col=c("red", "black"), bty="n")
-dev.off()
+load("DataAnalysis/EstimatedRegressionCoefficients.RData")
+  
+  pdf("TablesFigures/Figure2.pdf",width=5.5, height=4.0)
+  par(mar=c(4.1, 4.1, 1.5, 0.5))
+  plot(log(LamVals), CorVals, xlab=expression(ln(lambda)), ylab=expression(paste("Kendall's ", tau)),
+       main="Rank Association between the External Risk Model and RASPER", type="n",
+       las=1, ylim=c(0.4, 1.0), cex.lab=1.2, cex.main=0.9)
+  points(log(LamVals), CorVals, pch=16)
+  points(log(LamVals), CorValsS, pch=16, col="red")
+  lines(log(LamVals), CorVals)
+  lines(log(LamVals), CorValsS, col="red")
+  #abline(v=log(lambda.best.kendall), lty=2, lwd=2)
+  #abline(v=log(lambda.best.spear), lty=2, lwd=2, col="red")
+  segments(x0 = log(lambda.best.kendall), y0 = 0.3, 
+           x1 = log(lambda.best.kendall), y1 = 0.7, lty = 2, lwd=2)
+  segments(x0 = log(lambda.best.spear), y0 = 0.3, 
+           x1 = log(lambda.best.spear), y1 = 0.7, lty = 2,
+           lwd=2, col="red")
+  legend("topleft", legend=c("RASPER (Spearman)", expression(paste("RASPER (Kendall's ", tau, ")"))), lwd=3,
+         col=c("red", "black"), bty="n")
+  text(x = log(lambda.best.kendall) - 2.1, y = 0.64, 
+       labels = expression(paste("Best ", lambda, " by LOOCV")), pos = 4,
+       cex=0.6)
+  text(x = log(lambda.best.kendall) - 2.3, y = 0.61, 
+       labels = expression(paste("for RASPER (Kendall's ", tau, ")")), 
+       pos = 4, cex=0.6)
+  text(x = log(lambda.best.spear) + 0.6, y = 0.45, 
+       labels = expression(paste("Best ", lambda, " by LOOCV")), pos = 4,
+       cex=0.6)
+  text(x = log(lambda.best.spear) + 0.4, y = 0.42, 
+       labels = "for RASPER (Spearman)", 
+       pos = 4, cex=0.6)
+  arrows(x0 = 13.3, y0 =0.64, 
+         x1 = log(lambda.best.kendall)-0.05, y1= 0.64, 
+         lwd=2, length=0.10)
+  arrows(x0 = 14.7, y0 =0.45, 
+         x1 = log(lambda.best.spear)+0.05, y1= 0.45, 
+         col="red", lwd=2, length=0.10)
+  dev.off()
+
+  
